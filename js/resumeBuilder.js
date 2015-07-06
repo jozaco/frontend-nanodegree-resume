@@ -6,7 +6,7 @@ var formattedName = HTMLheaderName
 
 var formattedRole = HTMLheaderRole
 	.replace("%data%", role);
-	
+
 $("#header").append(formattedName);
 $("#header").append(formattedRole);
 
@@ -149,7 +149,7 @@ var education = {
 			"url":	"http://www.udacity.com"
 		}
 	]
-}; 
+};
 
 
 function displayWork(){
@@ -159,11 +159,11 @@ function displayWork(){
 		$("#skills").append(HTMLskills.replace("%data%",bio.skills[1]));
 		$("#skills").append(HTMLskills.replace("%data%",bio.skills[2]));
 	}
-	
+
 	for(job in work.jobs) {
 		$("#workExperience").append(HTMLworkStart);
 		var formattedWork = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-		var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title); 
+		var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
 		var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates.from+ '-'+ work.jobs[job].dates.to);
 		var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
 		var formattedDesc = HTMLworkDescription.replace("%data%", work.jobs[job].description);
@@ -171,10 +171,25 @@ function displayWork(){
 		$(".work-entry:last").append(formattedDates);
 		$(".work-entry:last").append(formattedLocation);
 		$(".work-entry:last").append(formattedDesc);
-	}	
+	}
 }
 
 displayWork();
 
+projects.display = function() {
+	for(project in projects.projects){
+		$("#main").append(HTMLprojectStart);
+		var projectTitle = HTMLprojectTitle.replace("%data%",projects.projects[project].title);
+		var projectDates = HTMLprojectDates.replace("%data%",projects.projects[project].dates.from.concat(' - ',projects.projects[project].dates.to));
+		var projectDescription = HTMLprojectDescription.replace("%data%",projects.projects[project].description);
 
+		$(".project-entry:last").append(projectTitle);
+		$(".project-entry:last").append(projectDates);
+		$(".project-entry:last").append(projectDescription);
 
+	}
+}
+
+projects.display();
+
+$("#mapDiv").append(googleMap);
